@@ -151,10 +151,10 @@ async function simulateTransaction(request_data) {
         );
         db.close();
     } else {
-      console.log("boo it didnt work!");
-      console.log(error);
-      console.log(response);
-      console.log(body);
+      console.log("boo it didnt work!")
+      console.log(error)
+      console.log(response)
+      console.log(body)
     }
   })
 }
@@ -193,14 +193,35 @@ app.post("/", async function (req, res) {
     simulateTransaction(request_data)
 
   } else if (req.body["method"] == "eth_bypassSendRawTransaction") {
-    console.log("MyMiddleMan processing eth_bypassSendRawTransaction");
-    submitRawSignatureToSepoliaNetwork(req.body["params"][0]);
+    console.log("MyMiddleMan processing eth_bypassSendRawTransaction")
+    submitRawSignatureToSepoliaNetwork(req.body["params"][0])
 
   } else {
     console.log(`MyMiddleMan passing request to ${test_net}`)
     passRequest(request_data, res)
   }
 });   
+
+app.get("/:hash", async function (req, res) {
+  console.log("im here: " + req)
+  const hashValue = req.params.hash
+  console.log(hashValue)
+
+  const db = await open({
+    filename: "./src/middleman.sqlite3",
+    driver: sqlite3.Database,
+  });
+
+  var result = await db.get(
+    "SELECT * from transactions where hash = (?)",
+    hashValue
+  );
+  if (result != undefined) {
+    res.send(result)
+  }
+
+  db.close()
+})
 
 const server = app.listen(port, () => {
   console.log(`Server is now running on ${process.env.RPC_URL}`)
