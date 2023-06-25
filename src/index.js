@@ -19,9 +19,9 @@ function decodeRawTransactionData(raw_transaction) {
     "chain_id": parsed_transaction.chainId,
     "hash": parsed_transaction.hash,
     "nonce": parsed_transaction.nonce,
-    "gas_limit": parsed_transaction.gasLimit.toNumber(),
-    "max_fee_per_gas": parsed_transaction.maxFeePerGas.toNumber(),
-    "max_priority_fee_per_gas": parsed_transaction.maxPriorityFeePerGas.toNumber(),
+    "gas_limit": parsed_transaction.gasLimit,
+    "max_fee_per_gas": parsed_transaction.maxFeePerGas,
+    "max_priority_fee_per_gas": parsed_transaction.maxPriorityFeePerGas,
     "from": parsed_transaction.from,
     "to": parsed_transaction.to,
     "data": parsed_transaction.data,
@@ -36,16 +36,52 @@ function decodeRawTransactionData(raw_transaction) {
   return parsed_transaction_obj
 }
 
+function calculateGasPrice(max_fee_per_gas, max_priority_fee_per_gas) {
+  let gas_price = max_fee_per_gas.add(max_priority_fee_per_gas)
+  return gas_price._hex
+}
+
 async function simulateTransaction(request_data) {
   let raw_transaction = request_data["params"][0]
 
-  let parsed_transaction = decodeRawTransactionData(raw_transaction)
+  let transaction_data = decodeRawTransactionData(raw_transaction)
+  let simulationFormData = {
+    network_id: transaction_data.chain_id,  
+    from: transaction_data.from.toString(),
+    to: transaction_data.to.toString(),
+    gas: transaction_data.gas_limit._hex,
+    gas_price: calculateGasPrice(transaction_data.max_fee_per_gas, transaction_data.max_priority_fee_per_gas),
+    value: parseInt(transaction_data.value),
+    input: transaction_data.data.toString()
+  }
+
+  console.log("Body", simulationFormData)
+
+  let tenderly_url = "https://api.tenderly.co/api/v1/account/allan7yin/project/middleman/simulate"
+  request(
+    {
+      url: tenderly_url,
+      method: "POST",
+      json: simulationFormData,
+      headers: {
+        "X-Access-Key": "G5OGZ70tnCnau-y8NOXndb8WGs0qOBby"
+      }
+    },
+    (error, response, body) => {
+      if (error) {
+        console.error("Tenderely Request Error:", error)
+      } else {
+        // console.log("Tenderely Request Response:", response)
+        console.log("Tenderely Request Body:", body)
+      }
+    }
+  )
 }
 
 async function passRequest(request_data, res) {
   request(
     {
-      url: "environment_variable_url",
+      url: "https://rpc.tenderly.co/fork/92de727b-928b-4a44-92ca-5f5c7e045df0",
       method: "POST",
       json: request_data
     },
@@ -71,7 +107,7 @@ app.post("/", async function (req, res) {
     simulateTransaction(request_data)
   } else {
     console.log(`MyMiddleMan passing request to ${test_net}`)
-    // pass_request(request_data, res)
+    // passRequest(request_data, res)
   }
 });   
 
