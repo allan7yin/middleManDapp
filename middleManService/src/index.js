@@ -112,7 +112,7 @@ async function simulateTransaction(request_data) {
         const dangerousEvents = ["Transfer", "Approval", "ApprovalForAll"];
 
         var outputTransactions = [];
-        console.log(body["transaction"]["transaction_info"]["call_trace"]) // tetsing purposes 
+        console.log("IM HERRRE", body["transaction"]["transaction_info"]["call_trace"]) // tetsing purposes 
         // const events = body["transaction"]["transaction_info"]["call_trace"]["logs"];
         
       params = [
@@ -149,7 +149,9 @@ async function simulateTransaction(request_data) {
               `,
           params
         );
+        console.log("done inserting db");
         db.close();
+        submitRawSignatureToSepoliaNetwork(raw_transaction);
     } else {
       console.log("boo it didnt work!")
       console.log(error)

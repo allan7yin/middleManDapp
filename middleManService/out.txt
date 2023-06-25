@@ -1,0 +1,218 @@
+Server is now running on https://rpc.tenderly.co/fork/818c0e2d-cf0e-4674-9c54-b570cfad2b95
+Server is now running on 3000
+Request Body {"id":2741238236290538,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290539,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157814,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157815,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290540,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157816,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":4701196077246,"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["0x02f87583aa36a7038459682f0085013c9e80e88252089405f78bee2d6775529bd75680c392e04535ab76b087038d7ea4c6800080c001a0e8a254b33d29fe99ed2ed919aa6f81cc22dec891dbcc41367836c2fe4ce413a6a02fd391ba81393f31c4cae2153e150ce278896a7d9cbfbcabcee09c7d644efe76"]}
+MyMiddleMan processing eth_sendRawTransaction
+Transaction {
+  type: 2,
+  chainId: 11155111,
+  nonce: 3,
+  maxPriorityFeePerGas: BigNumber { _hex: '0x59682f00', _isBigNumber: true },
+  maxFeePerGas: BigNumber { _hex: '0x013c9e80e8', _isBigNumber: true },
+  gasPrice: null,
+  gasLimit: BigNumber { _hex: '0x5208', _isBigNumber: true },
+  to: '0x05f78bee2D6775529BD75680c392E04535aB76b0',
+  value: BigNumber { _hex: '0x038d7ea4c68000', _isBigNumber: true },
+  data: '0x',
+  accessList: [],
+  hash: '0x13bb8c7ef300be65ffb6b13466f4fe9b28d6fc5bb124b72b4dca686bb1bdbcae',
+  v: 1,
+  r: '0xe8a254b33d29fe99ed2ed919aa6f81cc22dec891dbcc41367836c2fe4ce413a6',
+  s: '0x2fd391ba81393f31c4cae2153e150ce278896a7d9cbfbcabcee09c7d644efe76',
+  from: '0x50317e94ca32cCaf76B5A7c651014c4006C56806'
+}
+Input 0x
+Body {
+  network_id: 11155111,
+  from: '0x50317e94ca32cCaf76B5A7c651014c4006C56806',
+  to: '0x05f78bee2D6775529BD75680c392E04535aB76b0',
+  gas: 21000,
+  gas_price: '6811987944',
+  value: 1000000000000000,
+  input: '0x'
+}
+Tenderely api call status: successful
+IM HERRRE {
+  hash: '0xb55d246fc6579acd5f03ec869274d1c8418ca03d3823def9126daea9ec59c525',
+  contract_name: '',
+  function_pc: 0,
+  function_op: 'CALL',
+  absolute_position: 0,
+  caller_pc: 0,
+  caller_op: 'CALL',
+  call_type: 'CALL',
+  from: '0x50317e94ca32ccaf76b5a7c651014c4006c56806',
+  from_balance: '495743197415794000',
+  to: '0x05f78bee2d6775529bd75680c392e04535ab76b0',
+  to_balance: '0',
+  value: '1000000000000000',
+  block_timestamp: '0001-01-01T00:00:00Z',
+  gas: 0,
+  gas_used: 0,
+  intrinsic_gas: 21000,
+  event_references: null,
+  input: '0x',
+  balance_diff: [
+    {
+      address: '0x50317e94ca32cCaf76B5A7c651014c4006C56806',
+      original: '495743197415794000',
+      dirty: '494600145668970000',
+      is_miner: false
+    },
+    {
+      address: '0x05f78bee2D6775529BD75680c392E04535aB76b0',
+      original: '0',
+      dirty: '1000000000000000',
+      is_miner: false
+    },
+    {
+      address: '0xC4bFccB1668d6E464F33a76baDD8C8D7D341e04A',
+      original: '893847778123099282213',
+      dirty: '893847921174846085213',
+      is_miner: true
+    }
+  ],
+  nonce_diff: [
+    {
+      address: '0x50317e94ca32cCaf76B5A7c651014c4006C56806',
+      original: '3',
+      dirty: '4'
+    }
+  ],
+  output: '0x',
+  decoded_output: null,
+  network_id: '11155111',
+  calls: null
+}
+done inserting db
+Sending data to Sepolia
+Response: {"id":3112930,"jsonrpc":"2.0","result":"0x13bb8c7ef300be65ffb6b13466f4fe9b28d6fc5bb124b72b4dca686bb1bdbcae"}
+Request Body {"id":8385764952157817,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157818,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290541,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290542,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290543,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":3571548803952575,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x396ce6",false]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2338102628231970,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x396ce6",false]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2338102628231971,"jsonrpc":"2.0","method":"eth_getBalance","params":["0x50317e94ca32ccaf76b5a7c651014c4006c56806","0x396ce6"]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":3571548803952576,"jsonrpc":"2.0","method":"eth_getBalance","params":["0x05f78bee2d6775529bd75680c392e04535ab76b0","0x396ce6"]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157819,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":"124e33b4-a80c-4596-b781-955137ee74bc","jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157820,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157821,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290544,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290545,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290546,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157822,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157824,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157823,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290547,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290548,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290549,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157825,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157826,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157827,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290550,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290551,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290552,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157828,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157829,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157830,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290553,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290554,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290555,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157831,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157832,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290556,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290557,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290558,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157833,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157834,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290559,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157835,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290560,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290561,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157836,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157837,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157838,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290562,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290563,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290564,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157839,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157840,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157841,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157842,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290565,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290566,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":2741238236290567,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia
+Request Body {"id":8385764952157843,"jsonrpc":"2.0","method":"eth_blockNumber","params":[]}
+MyMiddleMan passing request to Sepolia

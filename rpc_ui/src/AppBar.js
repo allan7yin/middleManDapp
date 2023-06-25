@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import { useState, useEffect } from 'react';
+// import { useHistory  } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,6 +55,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function ResponsiveAppBar() {
+    const [curHash, setcurHash] = useState("");
+    const updateHash = (e) => {
+        console.log(e.target.value);
+        setcurHash(e.target.value);
+    }
+    // const history = useHistory();
+
+    // const routeChange = () =>{ 
+    //   let path = `hash/${curHash}`; 
+    //   history.push(path);
+    // }
+    
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ width: '100%', backgroundColor: '#317773' }}>
@@ -69,10 +84,14 @@ function ResponsiveAppBar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Transaction hash..."
               inputProps={{ 'aria-label': 'search' }}
+              value={curHash}
+              onChange={updateHash}
             />
+            
           </Search>
+          <Button style={{color:'white'}} onClick={event =>  window.location.href=`${curHash}`}>Click me!</Button>
         </Toolbar>
       </AppBar>
     </Box>
