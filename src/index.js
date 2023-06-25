@@ -89,8 +89,9 @@ async function passRequest(request_data, res) {
       if (error) {
         console.error("Pass Request Error:", error)
       } else {
-        console.log("Pass Request Response:", response)
+        // console.log("Pass Request Response:", response)
         console.log("Pass Request Body:", body)
+        res.send(body);
       }
     }
   )
@@ -107,7 +108,7 @@ app.post("/", async function (req, res) {
     simulateTransaction(request_data)
   } else {
     console.log(`MyMiddleMan passing request to ${test_net}`)
-    // passRequest(request_data, res)
+    passRequest(request_data, res)
   }
 });   
 
