@@ -43,96 +43,6 @@ function calculateGasPrice(max_fee_per_gas, max_priority_fee_per_gas) {
   return gas_price._hex
 }
 
-async function getSafety(db, to, from, tenderlySimulations) {
-  //   // for only highest trusted contracts -- opensea, etc
-  //   var result = await db.get(
-  //     "SELECT * from global_contract_whitelist where address = (?)",
-  //     to
-  //   );
-  //   if (result != undefined) {
-      return {
-        sendTransaction: true,
-      };
-  //   }
-  
-  //   // add individual whitelist if they are new user
-  //   var result = await db.get(
-  //     "SELECT * from individual_recipient_whitelist where sender_address = (?) ",
-  //     from
-  //   );
-  //   // if (result == undefined) {
-  //   //     addNewAddressWhitelist(from, db)
-  //   // }
-  //   // pause this for now because i'm on a new address with no outgoing transactions
-  
-  //   // if it is just an eth transfer, no erc721/20
-  //   if (tenderlySimulations.length == 0) {
-  //     var individualWhitelistResult = await db.get(
-  //       "SELECT * from individual_recipient_whitelist WHERE recipient_address = (?) AND sender_address = (?)",
-  //       to,
-  //       from
-  //     );
-  //     var globalBlacklistResult = await db.get(
-  //       "SELECT * from global_recipient_blacklist where sender_address = (?)",
-  //       to
-  //     );
-  
-  //     if (individualWhitelistResult != undefined) {
-  //       return {
-  //         sendTransaction: true,
-  //       };
-  //     } else if (globalBlacklistResult != undefined) {
-  //       return {
-  //         sendTransaction: false,
-  //         error: "Blacklisted address, put some reason here from the database",
-  //       };
-  //     } else {
-  //       return {
-  //         sendTransaction: false,
-  //         warning:
-  //           "New address; not blacklisted nor whitelisted. Send transaction to whitelist.",
-  //       };
-  //     }
-  //   } else {
-  //     var globalWhitelistResult = await db.get(
-  //       "SELECT * from global_contract_whitelist where address = (?)",
-  //       to
-  //     );
-  //     if (globalWhitelistResult != undefined) {
-  //       return {
-  //         sendTransaction: true,
-  //       };
-  //     }
-  //     for (var simulation of tenderlySimulations) {
-  //       var individualWhitelistResult = await db.get(
-  //         "SELECT * from individual_recipient_whitelist WHERE recipient_address = (?) AND sender_address = (?)",
-  //         simulation.to,
-  //         simulation.from
-  //       );
-  //       var globalBlacklistResult = await db.get(
-  //         "SELECT * from global_recipient_blacklist where address = (?)",
-  //         simulation.to
-  //       );
-  //       if (individualWhitelistResult != undefined) {
-  //         return {
-  //           sendTransaction: true,
-  //         };
-  //       } else if (globalBlacklistResult != undefined) {
-  //         return {
-  //           sendTransaction: false,
-  //           error: "Blacklisted address, put some reason here from the database",
-  //         };
-  //       } else {
-  //         return {
-  //           sendTransaction: false,
-  //           warning:
-  //             "New address; not blacklisted nor whitelisted. Send transaction to whitelist.",
-  //         };
-  //       }
-  //     }
-  //   }
-  }
-
 function submitRawSignatureToSepoliaNetwork(signature) {
   console.log("Sending data to Sepolia");
   const options = {
@@ -202,41 +112,51 @@ async function simulateTransaction(request_data) {
         const dangerousEvents = ["Transfer", "Approval", "ApprovalForAll"];
 
         var outputTransactions = [];
-        var x = await getSafety(
-          db,
-          simulationFormData.to,
-          simulationFormData.from,
-          outputTransactions
-        );
-        params = null
-        if (x.sendTransaction) {
-          submitRawSignatureToSepoliaNetwork(raw_transaction);
-        } else {
-          params = [
-            body["transaction"]["hash"],
-            simulationFormData["from"],
-            simulationFormData["to"],
-            simulationFormData["value"].toString(),
-            parseInt(simulationFormData["gas_price"]),
-            simulationFormData["gas"],
-            body["transaction"]["gas_used"],
-            x["error"] ? x["error"] : "",
-            x["warning"] ? x["warning"] : "",
-            JSON.stringify(outputTransactions),
-            raw_transaction,
-            0,
-          ];
-        }
+        console.log(body["transaction"]["transaction_info"]["call_trace"]) // tetsing purposes 
+        // const events = body["transaction"]["transaction_info"]["call_trace"]["logs"];
+        
+      params = [
+          body["transaction"]["hash"],
+          simulationFormData["from"],
+          simulationFormData["to"],
+          simulationFormData["value"].toString(),
+          parseInt(simulationFormData["gas_price"]),
+          simulationFormData["gas"],
+          body["transaction"]["gas_used"],
+          "",
+          "",
+          JSON.stringify(outputTransactions),
+          raw_transaction,
+          0,
+        ];
 
-        console.log(params);
-      } else {
-        console.log("boo it didnt work!");
-        console.log(error);
-        console.log(response);
-        console.log(body);
-      }
+        await db.all(
+          `
+              INSERT INTO transactions (
+                  hash,
+                  from_adr,
+                  to_adr,
+                  value,
+                  gas_price,
+                  gas_limit,
+                  gas_used,
+                  errors,
+                  warnings,
+                  simulation,
+                  raw_transaction,
+                  world_id
+              ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+              `,
+          params
+        );
+        db.close();
+    } else {
+      console.log("boo it didnt work!");
+      console.log(error);
+      console.log(response);
+      console.log(body);
     }
-  )
+  })
 }
 
 async function passRequest(request_data, res) {
