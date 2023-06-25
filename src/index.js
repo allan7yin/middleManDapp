@@ -46,15 +46,16 @@ async function simulateTransaction(request_data) {
 
   let transaction_data = decodeRawTransactionData(raw_transaction)
   let simulationFormData = {
-    network_id: transaction_data.chain_id,  
-    from: transaction_data.from.toString(),
-    to: transaction_data.to.toString(),
-    gas: transaction_data.gas_limit._hex,
-    gas_price: calculateGasPrice(transaction_data.max_fee_per_gas, transaction_data.max_priority_fee_per_gas),
-    value: parseInt(transaction_data.value),
-    input: transaction_data.data.toString()
+    "network_id": transaction_data.chain_id,  
+    "from": transaction_data.from.toString(),
+    "to": transaction_data.to.toString(),
+    "gas": parseInt(transaction_data.gas_limit._hex, 16),
+    "gas_price": parseInt(calculateGasPrice(transaction_data.max_fee_per_gas, transaction_data.max_priority_fee_per_gas), 16).toString(),
+    "value": parseInt(transaction_data.value),
+    "input": ""
   }
 
+  console.log("Input", transaction_data.data)
   console.log("Body", simulationFormData)
 
   let tenderly_url = "https://api.tenderly.co/api/v1/account/allan7yin/project/middleman/simulate"
@@ -90,7 +91,7 @@ async function passRequest(request_data, res) {
         console.error("Pass Request Error:", error)
       } else {
         // console.log("Pass Request Response:", response)
-        console.log("Pass Request Body:", body)
+        // console.log("Pass Request Body:", body)
         res.send(body);
       }
     }
