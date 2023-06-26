@@ -1,5 +1,5 @@
 ## MyMiddleMan
-Submission for [ETHGlobal Waterloo 2023 Hackathon] (https://ethglobal.com/showcase/mymiddleman-e0ps2). This poject is a web3 middleware application aimed to provide security to user transaction occurred on the blockchain. Using Tenderly to simulate and test a virtual transaction our product aims to guarantee 100% safe User transaction.
+Submission for [ETHGlobal Waterloo 2023 Hackathon](https://ethglobal.com/showcase/mymiddleman-e0ps2). This poject is a web3 middleware application aimed to provide security to user transaction occurred on the blockchain. Using Tenderly to simulate and test a virtual transaction our product aims to guarantee 100% safe User transaction.
 
 ### Description
 We act as a middleman, every communication that occurs between a user and the blockchain through a wallet (MetaMask) occurs through our platform. We insure each transaction is scam free by using a stable and versatile platform called Tenderly. Tenderly provides a simulation that runs the transaction on a virtual fork of the blockchain allowing the users to remove the barrier between a transaction and its execution.
@@ -20,7 +20,7 @@ git clone https://github.com/allan7yin/middleManDapp.git
 ```
 npm install
 ```
-3. Configure environment variables in `.env`. To do so, will need to create account with [Tenderely] (https://tenderly.co). Within [Tenderely] (https://tenderly.co), create a project, create virtual fork of blockchain on testing network `Sepolia`. For that project, obtain `api key`, and place into `.env`.
+3. Configure environment variables in `.env`. To do so, will need to create account with [Tenderely](https://tenderly.co). Within [Tenderely](https://tenderly.co), create a project, create virtual fork of blockchain on testing network `Sepolia`. For that project, obtain `api key`, and place into `.env`.
 4. Once configured, run application (default is port `3000`)
 ```
 
